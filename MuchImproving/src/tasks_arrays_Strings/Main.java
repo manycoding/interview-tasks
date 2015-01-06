@@ -12,5 +12,6 @@ public class Main {
 		MatrixReset.setZeros(matrix);
 		Tests.printMatrix(matrix);
 
+		System.out.println(StringsRotationChecker.isRotation("test", "stte"));
 	}
 }
