@@ -42,7 +42,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-.classpath
-.project
-bin/*
-.settings/*
+# Eclipse trash
+*.classpath
+*.project
+.settings/
+*.prefs
+MuchImproving/.settings/org.eclipse.jdt.core.prefs
