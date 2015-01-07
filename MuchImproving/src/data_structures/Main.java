@@ -8,7 +8,7 @@ public class Main {
 		LinkedListNode node = Tests.generateLinkedList(10, 10);
 		Tests.printLinkedListNode(node);
 
-		LinkedListNode.nthToLast(node, 5);
+		Tests.printLinkedListNode(node.partition(node, 5));
 
 	}
 }

@@ -26,6 +26,16 @@ public class LinkedListNode {
 		node.next = endNode;
 	}
 
+	public static boolean deleteNode(LinkedListNode node) {
+		if (node == null || node.next == null)
+			return false;
+
+		LinkedListNode next = node.next;
+		node.data = next.data;
+		node.next = next.next;
+		return true;
+	}
+
 	public LinkedListNode deleteNode(LinkedListNode headNode, int data) {
 		LinkedListNode node = headNode;
 
@@ -66,5 +76,35 @@ public class LinkedListNode {
 		if (i == k)
 			System.out.println(head.data);
 		return i;
+	}
+
+	// Write code to partition a linked list around a value x, such that all
+	// nodes less than x
+	// come before all nodes greater than or equal to x.
+	public LinkedListNode partition(LinkedListNode node, int x) {
+		LinkedListNode beforeX = null;
+		LinkedListNode afterX = null;
+
+		while (node != null) {
+			LinkedListNode next = node.next;
+			if (node.data < x) {
+				node.next = beforeX;
+				beforeX = node;
+			} else {
+				node.next = afterX;
+				afterX = node;
+			}
+			node = next;
+		}
+
+		if (beforeX == null)
+			return afterX;
+
+		LinkedListNode head = beforeX;
+		while (beforeX.next != null)
+			beforeX = beforeX.next;
+		beforeX.next = afterX;
+
+		return head;
 	}
 }

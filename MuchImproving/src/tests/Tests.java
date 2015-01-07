@@ -31,16 +31,16 @@ public abstract class Tests {
 		System.out.println("");
 	}
 
-	public static LinkedListNode generateLinkedList(int size, int border) {
-		if (size == 0 || border == 0)
+	public static LinkedListNode generateLinkedList(int size, int upperBound) {
+		if (size == 0 || upperBound == 0)
 			return null;
 
 		Random random = new Random();
-		LinkedListNode head = new LinkedListNode(random.nextInt(border));
+		LinkedListNode head = new LinkedListNode(random.nextInt(upperBound));
 		LinkedListNode previous = head;
 
 		for (int i = 1; i < size; i++) {
-			LinkedListNode node = new LinkedListNode(random.nextInt(border));
+			LinkedListNode node = new LinkedListNode(random.nextInt(upperBound));
 			previous.next = node;
 			previous = node;
 		}
