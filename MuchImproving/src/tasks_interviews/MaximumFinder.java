@@ -1,4 +1,4 @@
-package interview_tasks;
+package tasks_interviews;
 
 public abstract class MaximumFinder {
 	public static int findMaximum(int[] numbers) {

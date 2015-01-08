@@ -1,4 +1,4 @@
-package interview_tasks;
+package tasks_interviews;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

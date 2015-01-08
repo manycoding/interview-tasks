@@ -1,4 +1,4 @@
-package interview_tasks;
+package tasks_interviews;
 
 public class InterleavingMovies {
 
