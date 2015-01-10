@@ -47,7 +47,7 @@ public abstract class Tests {
 		return head;
 	}
 
-	public static void printLinkedListNode(LinkedListNode node) {
+	public static void printLinkedList(LinkedListNode node) {
 		if (node == null)
 			return;
 		while (node != null) {
