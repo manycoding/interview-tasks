@@ -1,5 +1,6 @@
 package tasks_interviews;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class BracketsValidator {
@@ -14,21 +15,22 @@ public class BracketsValidator {
 	// g([{}-[]]{e}) - true
 	// "" - true
 
-	private final static String openingBrackets = "([{<";
-	private final static String closingBrackets = ")]}>";
-
 	public static boolean checkBrackets(String input) {
 		Stack<Character> openedBrackets = new Stack<Character>();
-		
+		HashMap<Character, Character> brackets = new HashMap<Character, Character>();
+		brackets.put('(', ')');
+		brackets.put('{', '}');
+		brackets.put('[', ']');
+
 		char[] inputs = input.toCharArray();
 		int x = 0;
 		for (char c : inputs) {
-			if (openingBrackets.indexOf(c) != -1) {
+			if (brackets.containsKey(c)) {
 				openedBrackets.push(c);
-			} else if (closingBrackets.indexOf(c) != -1) {
+			} else if (brackets.containsValue(c)) {
 				if (openedBrackets.isEmpty())
 					return false;
-				if (Math.abs(openedBrackets.pop() - c) > 2)
+				if (brackets.get(openedBrackets.pop()) != c)
 					return false;
 			}
 
