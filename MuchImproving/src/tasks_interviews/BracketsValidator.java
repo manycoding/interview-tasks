@@ -26,7 +26,10 @@ public class BracketsValidator {
 		int x = 0;
 		for (char c : inputs) {
 			if (brackets.containsKey(c)) {
-				openedBrackets.push(c);
+				if (input.substring(x).indexOf(brackets.get(c)) != -1)
+					openedBrackets.push(c);
+				else
+					return false;
 			} else if (brackets.containsValue(c)) {
 				if (openedBrackets.isEmpty())
 					return false;
