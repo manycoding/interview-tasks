@@ -4,10 +4,10 @@ public class StackArray {
 	// 3.1 Describe how you could use a single array to implement three
 	// stacks.
 
-	int stackSize = 100;
-	int[] buffer = new int[stackSize * 3];
+	private int stackSize = 100;
+	private int[] buffer = new int[stackSize * 3];
 	// pointers to track top element
-	int[] stackPointer = { -1, -1, -1 };
+	private int[] stackPointer = { -1, -1, -1 };
 
 	public void push(int stackNumber, int value) throws Exception {
 		// check if we have space
@@ -38,7 +38,7 @@ public class StackArray {
 	}
 
 	// returns index of top of stack
-	int absTopOfStack(int stackNumber) {
+	private int absTopOfStack(int stackNumber) {
 		return stackNumber * stackSize + stackPointer[stackNumber];
 	}
 }
