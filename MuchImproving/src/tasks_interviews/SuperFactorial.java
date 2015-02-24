@@ -2,7 +2,7 @@ package tasks_interviews;
 
 public abstract class SuperFactorial {
 	public static long getFactorial(int x) {
-		if (x == 1)
+		if (x == 1 || x == 0)
 			return 1;
 
 		int result = 1;
@@ -22,9 +22,7 @@ public abstract class SuperFactorial {
 	}
 
 	public static long getSuperFactorial2(int x) {
-		if (x == 0)
-			return 0;
-		if (x == 1)
+		if (x == 1 || x == 0)
 			return 1;
 
 		long result = 1;
