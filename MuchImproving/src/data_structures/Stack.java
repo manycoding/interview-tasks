@@ -1,7 +1,9 @@
 package data_structures;
 
 public class Stack {
-	LinkedListNode top;
+	public int size = 0;
+	public LinkedListNode top;
+	public LinkedListNode bottom;
 
 	Object pop() {
 		if (top != null) {

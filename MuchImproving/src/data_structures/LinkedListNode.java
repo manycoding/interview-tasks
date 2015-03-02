@@ -2,6 +2,7 @@ package data_structures;
 
 public class LinkedListNode {
 	public LinkedListNode next = null;
+	public LinkedListNode previous;
 	public int data;
 
 	public LinkedListNode(int data) {

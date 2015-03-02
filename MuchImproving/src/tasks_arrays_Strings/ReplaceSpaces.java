@@ -10,14 +10,19 @@ public abstract class ReplaceSpaces {
 				spaceCount++;
 
 		newLength = length + spaceCount * 2;
-		//str[newLength] = '\0';
+		// str[newLength] = '\0';
 		for (int i = length - 1; i >= 0; i--) {
+
 			if (str[i] == ' ') {
 				str[newLength - 1] = '0';
 				str[newLength - 2] = '2';
 				str[newLength - 3] = '%';
 				newLength -= 3;
-			} else {
+				
+				if (--spaceCount == 0)
+					break;
+			} else if (spaceCount > 0) {
+				System.out.println(i);
 				str[newLength - 1] = str[i];
 				newLength--;
 			}
@@ -25,4 +30,16 @@ public abstract class ReplaceSpaces {
 		return str;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(replaceSpaces("foo bar$  ".toCharArray(), 8));
+	}
 }
+
+// 1.4 Write a method to replace all spaces in a string with '%20'. You may
+// assume that the
+// string has sufficient space at the end of the string to hold the additional
+// characters,
+// and that you are given the "true" length of the string. (Note: if
+// implementing in Java,
+// please use a character array so that you can perform this operation in
+// place.)
