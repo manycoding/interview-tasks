@@ -83,7 +83,6 @@ public class Deviation {
 // class MyClass {
 // public static void find_deviation(Integer[] v, Integer d) {}
 
-
 // Challenge 3: City Roads
 // You are living in a country with N cities. Each city is identified by an
 // unique integer ID in the [1..N] range. The cities are connected by M

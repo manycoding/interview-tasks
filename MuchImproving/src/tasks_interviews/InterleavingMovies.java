@@ -5,7 +5,7 @@ public class InterleavingMovies {
 	public static void main(String[] args) {
 		String[] movies1 = new String[] { "O", "O", "O", "O", "O", "O", "O" };
 		String[] movies2 = new String[] { "V", "V", "V", "V", "V", "V", "V",
-				"V", "V", "V", "V", "V", "V", "V"  };
+				"V", "V", "V", "V", "V", "V", "V" };
 
 		printArray(interleaveArrays(movies1, movies2));
 

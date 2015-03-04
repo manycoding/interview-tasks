@@ -10,7 +10,7 @@ public abstract class ReplaceSpaces {
 				spaceCount++;
 
 		newIndex = length + spaceCount * 2;
-		// str[newLength] = '\0';
+
 		for (int i = length - 1; i >= 0; i--) {
 
 			if (str[i] == ' ') {

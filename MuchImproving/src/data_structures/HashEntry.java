@@ -1,4 +1,5 @@
 package data_structures;
+
 public class HashEntry {
 	private int key;
 	private int value;

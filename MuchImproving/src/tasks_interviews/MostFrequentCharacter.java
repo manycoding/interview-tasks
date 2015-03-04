@@ -5,19 +5,19 @@ package tasks_interviews;
 
 public class MostFrequentCharacter extends Thread {
 	private String input;
-	
-	public MostFrequentCharacter(String input){
+
+	public MostFrequentCharacter(String input) {
 		this.input = input;
 	}
-	
-	public void run(){
+
+	public void run() {
 		System.out.println(getMostFrequentChar(input));
 	}
 
 	public static char getMostFrequentChar(String input) {
 		if (input == "")
 			return (char) Integer.MIN_VALUE;
-		
+
 		char[] inputs = input.toCharArray();
 		int[] dictionary = new int[128];
 		int max = dictionary[0];
@@ -33,11 +33,12 @@ public class MostFrequentCharacter extends Thread {
 		}
 		return (char) characterId;
 	}
-	
-	public static void main(String[] args){
-		MostFrequentCharacter instance = new MostFrequentCharacter("abcdeaabbccddee");
+
+	public static void main(String[] args) {
+		MostFrequentCharacter instance = new MostFrequentCharacter(
+				"abcdeaabbccddee");
 		Thread thread = new Thread(instance);
-		thread.start();		
-		
+		thread.start();
+
 	}
 }
