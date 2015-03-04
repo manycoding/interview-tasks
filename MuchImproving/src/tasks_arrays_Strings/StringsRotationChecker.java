@@ -1,4 +1,4 @@
-package tasks_arrays_Strings;
+package tasks_Arrays_Strings;
 
 public abstract class StringsRotationChecker {
 	public static boolean isRotation(String s1, String s2) {

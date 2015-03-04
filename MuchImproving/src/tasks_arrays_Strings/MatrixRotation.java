@@ -1,4 +1,4 @@
-package tasks_arrays_Strings;
+package tasks_Arrays_Strings;
 
 public abstract class MatrixRotation {
 	public static int[][] rotateMatrix(int[][] matrix, int n) {
