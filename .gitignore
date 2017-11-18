@@ -5,3 +5,5 @@
 **/bin/**/*
 **/.metadata/**/*
 **/.recommenders/**/*
+**/*.png
+**/*.jpg
