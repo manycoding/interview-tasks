@@ -7,16 +7,17 @@ import requests
 from bs4 import BeautifulSoup
 
 PAGE_NAMES = {"01": "desktop-wallpaper-calendars-january-",
-                "02": "desktop-wallpaper-calendars-february-",
-                "03": "desktop-wallpaper-calendars-march-",
-                "04": "desktop-wallpaper-calendars-april-",
-                "05": "desktop-wallpaper-calendars-may-",
-                "06": "desktop-wallpaper-calendars-june-",
-                "07": "desktop-wallpaper-calendars-july-",
-                "08": "desktop-wallpaper-calendars-august-",
-                "09": "desktop-wallpaper-calendars-september-",
-                "10": "desktop-wallpaper-calendars-october-",
-                "11": "desktop-wallpaper-calendars-november-"}
+              "02": "desktop-wallpaper-calendars-february-",
+              "03": "desktop-wallpaper-calendars-march-",
+              "04": "desktop-wallpaper-calendars-april-",
+              "05": "desktop-wallpaper-calendars-may-",
+              "06": "desktop-wallpaper-calendars-june-",
+              "07": "desktop-wallpaper-calendars-july-",
+              "08": "desktop-wallpaper-calendars-august-",
+              "09": "desktop-wallpaper-calendars-september-",
+              "10": "desktop-wallpaper-calendars-october-",
+              "11": "desktop-wallpaper-calendars-november-"}
+
 
 def get_wallpapers(year, month, size, verbosity, test=False):
     page_month = str(int(month) - 1)
@@ -28,7 +29,8 @@ def get_wallpapers(year, month, size, verbosity, test=False):
     if month == "12":
         url = "https://www.smashingmagazine.com/2016/11/christmas-wallpaper-calendars-2016/"
     else:
-        url = "https://www.smashingmagazine.com/{page_year}/{page_month}/{page_name}{year}/".format(page_year=page_year, page_month=page_month, page_name=PAGE_NAMES[month], year=year)
+        url = "https://www.smashingmagazine.com/{page_year}/{page_month}/{page_name}{year}/".format(
+            page_year=page_year, page_month=page_month, page_name=PAGE_NAMES[month], year=year)
 
     log(message="GET {}".format(url), verbosity=verbosity, message_verbosity=1)
     r = do_get(url)
@@ -44,6 +46,7 @@ def get_wallpapers(year, month, size, verbosity, test=False):
 
     return len(wallpaper_urls), saved_wallpapers
 
+
 def get_wallpaper_urls(page_source, year, size, verbosity):
     year = year[2:]
     soup = BeautifulSoup(page_source, "html.parser")
@@ -51,13 +54,14 @@ def get_wallpaper_urls(page_source, year, size, verbosity):
     size = size.replace("x", "×")
     return [w.attrs["href"] for w in soup.find_all("a", text=size, href=re.compile("{}/".format(year)))]
 
+
 def get_picture(url, verbosity, test=False):
     result = False
 
     log(message="GET {}".format(url), verbosity=verbosity, message_verbosity=2)
     wallpaper_response = do_get(url, stream=True)
     if wallpaper_response:
-        p = os.path.abspath(url[url.rfind("/")+1:])
+        p = os.path.abspath(url[url.rfind("/") + 1:])
         if not test:
             with open(p, "wb") as f:
                 for chunk in wallpaper_response.iter_content():
@@ -66,8 +70,9 @@ def get_picture(url, verbosity, test=False):
         log(p, verbosity=verbosity)
     return result
 
+
 def do_get(url, stream=False):
-    response = requests.get(url, stream=stream) 
+    response = requests.get(url, stream=stream)
     try:
         response.raise_for_status()
     except requests.exceptions.HTTPError as e:
@@ -75,21 +80,36 @@ def do_get(url, stream=False):
         return None
     return response
 
+
 def log(message, verbosity, message_verbosity=1):
     if verbosity >= message_verbosity:
         print(message)
 
+
 def main(argv):
-    found, saved = get_wallpapers(year=args.year, month=args.month, size=args.dimensions, verbosity=args.verbosity, test=args.test)
+    found, saved = get_wallpapers(year=args.year,
+                                  month=args.month,
+                                  size=args.dimensions,
+                                  verbosity=args.verbosity,
+                                  test=args.test)
     print("Found {}, saved {} wallpapers".format(found, saved))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("month", choices=["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], default="11", help="month in MM, e.g. 01, 12")
+    parser.add_argument("month",
+                        choices=["01", "02", "03", "04", "05", "06",
+                                 "07", "08", "09", "10", "11", "12"],
+                        default="11",
+                        help="month in MM, e.g. 01, 12")
     parser.add_argument("year", default="2017", help="year in YYYY, e.g. 2017")
-    parser.add_argument("dimensions", default= "320x480", help="dimensions of wallpapers, e.g. 320x480")
-    parser.add_argument("-v", "--verbosity", action="count", default=0, help="increase output verbosity")
-    parser.add_argument("-t", "--test", action="store_true", help="write output without saving files")
+    parser.add_argument("dimensions", default="320x480",
+                        help="dimensions of wallpapers, e.g. 320x480")
+    parser.add_argument("-v", "--verbosity", action="count",
+                        default=0, help="increase output verbosity")
+    parser.add_argument("-t", "--test", action="store_true",
+                        help="write output without saving files")
     args = parser.parse_args()
-    print("month {}, year {}, size {}".format(args.month, args.year, args.dimensions))
+    print("month {}, year {}, size {}".format(
+        args.month, args.year, args.dimensions))
     main(args)
